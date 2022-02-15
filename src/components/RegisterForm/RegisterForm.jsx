@@ -1,9 +1,8 @@
 import { React, useState } from 'react';
 import Cookies from 'js-cookie';
-import jwt_decode from "jwt-decode";
-
 
 const RegisterForm = () => {
+  
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassworld] = useState();
@@ -18,14 +17,12 @@ const RegisterForm = () => {
     setPassworld(e.target.value);
   }
 
-
   const data = {
     username: username,
     email: email,
     password: password
   };
   
-
   const sendData = () => fetch('http://localhost:1337/auth/local/register', {
     method: 'post',
     headers: {
@@ -34,25 +31,26 @@ const RegisterForm = () => {
     body: JSON.stringify(data)
   })
   .then((response) => response.json())
-  .then((curatedResponse) => Cookies.set('jwt', curatedResponse));
+  .then((curatedResponse) => {
+    curatedResponse === null ? console.log('empty response') : 
+    Cookies.set('userJwt', curatedResponse)
+  })
+  .catch((error) => console.log(error));
   
-
   // NB htmlFor relie le texte à l'input qui correspond.
   return (
-    <>
-      <form> 
-        <label htmlFor="username">username</label>
-        <input id="username" type="text" onChange={handleUsername}/>
+    <form className='register-form'> 
+      <label htmlFor="username">username</label>
+      <input id="username" type="text" onChange={handleUsername}/>
 
-        <label htmlFor="email">email</label>
-        <input id="email" type="text" onChange={handleEmail}/>
+      <label htmlFor="email">email</label>
+      <input id="email" type="text" onChange={handleEmail}/>
 
-        <label htmlFor="password">password</label>
-        <input id="password" type="password" onChange={handlePassword}/>
+      <label htmlFor="password">password</label>
+      <input id="password" type="password" onChange={handlePassword}/>
 
-        <button type="button" className='form-submit-btn' onClick={() => sendData()}>create user</button>
-      </form>
-    </>
+      <button type="button" className='form-submit-btn' onClick={() => sendData()}>create user</button>
+    </form>
   );
 };
 

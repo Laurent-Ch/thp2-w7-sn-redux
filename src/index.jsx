@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Profile from "./components/Profile/Profile";
 
 const App = () => {
   console.log(store.getState());
@@ -19,6 +20,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />}/>
+          <Route path="/my-profile" element={<Profile />}/>
           <Route path="/register" element={<RegisterForm />}/>
           <Route path="/login" element={<Login />}/>
         </Routes>

@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar__element {
+  padding-left: 15px;
+}
+
+// Register form
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
+.form-submit-btn {
+  max-width: 35%;
+  margin: auto;
+}

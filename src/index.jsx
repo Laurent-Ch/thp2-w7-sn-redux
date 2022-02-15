@@ -6,11 +6,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const App = () => {
+  console.log(store.getState());
+  store.subscribe(() => console.log(store.getState()));
 
   return (
-    <div>
+    <Provider store={store}>
       <Router>
         <Navbar />
         <Routes>
@@ -19,7 +23,7 @@ const App = () => {
           <Route path="/login" element={<Login />}/>
         </Routes>
       </Router>
-    </div>
+    </Provider>
   );
 }
 

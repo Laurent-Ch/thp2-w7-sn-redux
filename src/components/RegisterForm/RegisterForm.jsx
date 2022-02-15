@@ -1,8 +1,12 @@
 import { React, useState } from 'react';
 import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { userLoggedIn } from '../../redux/logged/loggedActions';
 
 const RegisterForm = () => {
   
+  const dispatch = useDispatch();
+
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassworld] = useState();
@@ -34,6 +38,7 @@ const RegisterForm = () => {
   .then((curatedResponse) => {
     curatedResponse === null ? console.log('empty response') : 
     Cookies.set('userJwt', curatedResponse)
+    dispatch(userLoggedIn());
   })
   .catch((error) => console.log(error));
   

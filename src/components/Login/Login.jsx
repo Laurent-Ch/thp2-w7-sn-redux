@@ -1,8 +1,12 @@
 import { React, useState }  from 'react';
 import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { userLoggedIn } from '../../redux/logged/loggedActions';
 
 const Login = () => {
   
+  const dispatch = useDispatch();
+
   const [username, setUsername] = useState();
   const [password, setPassworld] = useState();
 
@@ -27,8 +31,13 @@ const Login = () => {
   })
   .then((response) => response.json())
   .then((curatedResponse) => {
-    curatedResponse === null ? console.log('empty response') : 
-    Cookies.set('userJwt', curatedResponse)
+    if (curatedResponse) {
+      Cookies.set('userJwt', curatedResponse);
+      dispatch(userLoggedIn());
+    }
+    else {
+      console.log('empty response');
+    }
   })
   .catch((error) => console.log(error));
 

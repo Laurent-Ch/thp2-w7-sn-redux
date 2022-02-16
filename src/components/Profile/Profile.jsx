@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 import { AUTH_TOKEN_NAME } from '../../config';
-import { useNavigate } from 'react-router-dom';
 import {Navigate} from "react-router-dom";
 
 

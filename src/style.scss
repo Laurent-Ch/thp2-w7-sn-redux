@@ -19,3 +19,9 @@ form {
   max-width: 35%;
   margin: auto;
 }
+
+// Users
+.container-each-user {
+  display: flex;
+  flex-direction: column;
+}

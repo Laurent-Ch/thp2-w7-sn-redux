@@ -18,3 +18,8 @@ form {
   max-width: 35%;
   margin: auto;
 }
+
+.container-each-user {
+  display: flex;
+  flex-direction: column;
+}

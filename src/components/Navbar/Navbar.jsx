@@ -22,8 +22,12 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <nav>
-        {loggedStatus.logged && 
-          <Link to="/my-profile" className="navbar__element">Profile</Link>
+        {loggedStatus.logged && (
+          <>
+            <Link to="/my-profile" className="navbar__element">Profile</Link> 
+            <Link to="/users" className="navbar__element">Users</Link>
+          </>
+          )
         }
         <Link to="/" className="navbar__element">Home</Link>
         <Link to="/register" className="navbar__element">Register</Link>

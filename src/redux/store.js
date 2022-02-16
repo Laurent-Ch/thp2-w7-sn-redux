@@ -1,5 +1,10 @@
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import loggedReducer from './logged/loggedReducer.js'
-const store = createStore(loggedReducer);
+
+const rootReducer = combineReducers({
+  logged: loggedReducer
+})
+
+const store = createStore(rootReducer);
 
 export default store;

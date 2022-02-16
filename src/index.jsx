@@ -11,8 +11,9 @@ import store from "./redux/store";
 import Profile from "./components/Profile/Profile";
 
 const App = () => {
+  
   console.log(store.getState());
-  store.subscribe(() => console.log(store.getState()));
+  store.subscribe(() => console.log(store.getState()))
 
   return (
     <Provider store={store}>

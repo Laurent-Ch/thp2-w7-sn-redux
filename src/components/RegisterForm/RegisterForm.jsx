@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { userLoggedIn } from '../../redux/logged/loggedActions';
+import { AUTH_TOKEN_NAME } from '../../config';
 
 const RegisterForm = () => {
   
@@ -36,9 +37,14 @@ const RegisterForm = () => {
   })
   .then((response) => response.json())
   .then((curatedResponse) => {
-    curatedResponse === null ? console.log('empty response') : 
-    Cookies.set('userJwt', curatedResponse)
+    if (curatedResponse) {
+      console.log(curatedResponse.jwt);
+      Cookies.set(AUTH_TOKEN_NAME, curatedResponse.jwt)
     dispatch(userLoggedIn());
+    }
+    else {
+      console.log('empty response');
+    }
   })
   .catch((error) => console.log(error));
   

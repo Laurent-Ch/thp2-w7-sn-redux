@@ -2,6 +2,7 @@ import { React, useState }  from 'react';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { userLoggedIn } from '../../redux/logged/loggedActions';
+import { AUTH_TOKEN_NAME } from '../../config';
 
 const Login = () => {
   
@@ -32,9 +33,9 @@ const Login = () => {
   .then((response) => response.json())
   .then((curatedResponse) => {
     if (curatedResponse) {
-      Cookies.set('userJwt', curatedResponse);
-      dispatch(userLoggedIn());
-    }
+      console.log(curatedResponse.jwt);
+      Cookies.set(AUTH_TOKEN_NAME, curatedResponse.jwt);
+      dispatch(userLoggedIn());    }
     else {
       console.log('empty response');
     }

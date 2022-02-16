@@ -7,9 +7,8 @@ const cookie = Cookies.get(AUTH_TOKEN_NAME);
 const initialState = {
   logged: cookie ? true : false
 };
-
 console.log(initialState);
-console.log(cookie);
+// console.log(cookie);
 
 const loggedReducer = (state = initialState, action) => {
   switch(action.type) {

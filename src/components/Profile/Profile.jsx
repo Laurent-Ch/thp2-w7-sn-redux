@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
+import { AUTH_TOKEN_NAME } from '../../config';
+import { useNavigate } from 'react-router-dom';
+import {Navigate} from "react-router-dom";
 
 
-const Profile = () => {
-  const loggedStatus = useSelector(state => state.logged);
-
+  const Profile = () => {
+  
+  const [loaded, setLoaded] = useState(false);
   const [userData, setUserData] = useState(null);
-  const userCookie = Cookies.get('token');
-  console.log(userCookie);
+  const loggedStatus = useSelector(state => state.logged);
+  const userCookie = Cookies.get(AUTH_TOKEN_NAME);
+
+  useEffect(() => {
+    console.log(userData)
+    console.log(loggedStatus)
+  }, [userData, loggedStatus]);
 
   const getUserData = () => { 
     fetch('http://localhost:1337/users/me', {
@@ -20,19 +28,30 @@ const Profile = () => {
     })
     .then((response) => response.json())
     .then((curatedResponse) => {
+      console.log(curatedResponse);
       setUserData(curatedResponse);
-      console.log(userData);
+      setLoaded(true);
     })
     .catch((error) => console.log(error));
   }
 
-  !userData && loggedStatus && getUserData();
+  !loaded && getUserData();
 
-  return (
-    <div>
-      Conected to my Profile page
-    </div>
-  );
+  if (!loggedStatus.logged) {
+    return <Navigate to='/' />
+  }
+  else if (!userData) {
+    return <div>Loading...</div>
+  }
+  else {
+    return (
+      <div>
+        <h1>Profile</h1>
+        <div>Username: {userData.username}</div>
+        <div>Email: {userData.email}</div>
+      </div>
+  )};
+
 };
 
 export default Profile;

@@ -12,18 +12,17 @@ import Profile from "./components/Profile/Profile";
 
 const App = () => {
   
-  console.log(store.getState());
   store.subscribe(() => console.log(store.getState()))
-
+  
   return (
     <Provider store={store}>
       <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/my-profile" element={<Profile />}/>
           <Route path="/register" element={<RegisterForm />}/>
           <Route path="/login" element={<Login />}/>
+          <Route path="/my-profile" element={<Profile />}/>
         </Routes>
       </Router>
     </Provider>
@@ -31,3 +30,9 @@ const App = () => {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
+// const loggedStatus = useSelector(state => state.logged);
+// useEffect(() => {
+//   console.log(loggedStatus)
+// }, [loggedStatus]
+// )

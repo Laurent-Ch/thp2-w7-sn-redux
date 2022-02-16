@@ -9,6 +9,8 @@ const Navbar = () => {
 
   // Used for conditional profile rendering
   const loggedStatus = useSelector(state => state.logged);
+  console.log(loggedStatus);
+  
   // Used to log out
   const dispatch = useDispatch();
 
@@ -20,7 +22,7 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <nav>
-        {loggedStatus && 
+        {loggedStatus.logged && 
           <Link to="/my-profile" className="navbar__element">Profile</Link>
         }
         <Link to="/" className="navbar__element">Home</Link>

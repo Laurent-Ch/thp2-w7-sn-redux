@@ -13,11 +13,6 @@ import {Navigate} from "react-router-dom";
   const loggedStatus = useSelector(state => state.logged);
   const userCookie = Cookies.get(AUTH_TOKEN_NAME);
 
-  useEffect(() => {
-    console.log(userData)
-    console.log(loggedStatus)
-  }, [userData, loggedStatus]);
-
   const getUserData = () => { 
     fetch('http://localhost:1337/users/me', {
       method: 'get',

@@ -43,14 +43,4 @@ const Users = () => {
   };
 };
 
-
-
-
-//   return (
-//     <div>
-//       Users connected.
-//     </div>
-//   );
-// };
-
 export default Users;

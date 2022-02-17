@@ -81,7 +81,7 @@ const Posts = () => {
       )}
       <h2>Posts</h2>
       {loaded && (
-        <PostDisplay postData={postData}/>
+        <PostDisplay postData={postData} />
       )}
     </div>
   );

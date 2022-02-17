@@ -4,18 +4,20 @@ import { useParams } from "react-router-dom";
 import { AUTH_TOKEN_NAME } from "../../config";
 
 const User = () => {
+  
+  // Get relevant info
   const { id } = useParams();
   const userToken = Cookies.get(AUTH_TOKEN_NAME);
 
-  const [loaded, setLoaded] = useState(false);
+  // Set hooks
+  const [loadedProfile, setLoadedProfile] = useState(false);
+  const [loadedPosts, setLoadedPosts] = useState(false);
   const [username, setUsername] = useState();
-  const [userEmail, setUserEmail] = useState();
   const [userDescription, setUserDescription] = useState();
 
-
-  const setUserData = (username, email, description) => {
+  // Get profile info
+  const setUserData = (username, description) => {
     setUsername(username);
-    setUserEmail(email);
     setUserDescription(description);
   };
 
@@ -30,18 +32,42 @@ const User = () => {
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        setUserData(response.username, response.email, response.description);
-        setLoaded(true);
+        setUserData(response.username, response.description);
+        setLoadedProfile(true);
       });
   };
 
-  !loaded && getUserProfile();
+  // Get posts
+  const getUserPosts = () => {
+    fetch(`http://localhost:1337/posts?user.id=${id}`, {
+      method: "get",
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        // setUserData(response.username, response.description);
+        setLoadedPosts(true);
+      });
+  };
+
+  !loadedProfile && getUserProfile();
+  !loadedPosts && getUserPosts();
 
   return (
-    <div className="user-profile">
-      <div>Username: {username}</div>
-      <div>Email: {userEmail}</div>
-      <div>Description: {userDescription}</div>
+    <div className="user">
+      <div className="user-profile">
+        <h2>User's profile</h2>
+        <div>Username: {username}</div>
+        <div>Description: {userDescription}</div>
+      </div>
+      <div className="user-post">
+        <h2>User's posts</h2>
+        <div>Test</div>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import PostDisplay from "../../components/PostDisplay/PostDisplay";
 import { AUTH_TOKEN_NAME } from "../../config";
 
 const User = () => {
@@ -14,6 +15,7 @@ const User = () => {
   const [loadedPosts, setLoadedPosts] = useState(false);
   const [username, setUsername] = useState();
   const [userDescription, setUserDescription] = useState();
+  const [userPosts, setUserPosts] = useState();
 
   // Get profile info
   const setUserData = (username, description) => {
@@ -49,7 +51,7 @@ const User = () => {
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        // setUserData(response.username, response.description);
+        setUserPosts(response);
         setLoadedPosts(true);
       });
   };
@@ -59,15 +61,19 @@ const User = () => {
 
   return (
     <div className="user">
+      {loadedProfile && (
       <div className="user-profile">
         <h2>User's profile</h2>
         <div>Username: {username}</div>
         <div>Description: {userDescription}</div>
       </div>
+      )}
+      {loadedPosts && (
       <div className="user-post">
         <h2>User's posts</h2>
-        <div>Test</div>
+        <PostDisplay postData={userPosts} />
       </div>
+      )}
     </div>
   );
 };

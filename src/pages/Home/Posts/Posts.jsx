@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import {  AUTH_TOKEN_NAME, USER_ID_NAME } from '../../../config';
 import { useSelector } from 'react-redux';
+import PostDisplay from '../../../components/PostDisplay/PostDisplay';
 
 const Posts = () => {
   
@@ -80,18 +81,7 @@ const Posts = () => {
       )}
       <h2>Posts</h2>
       {loaded && (
-        <div className="posts-container">
-            {postData.map((post, index) => {
-              return (
-                <div className="post" key={index}>
-                  {loggedStatus.logged && (
-                  <div>Author: {post.user.username}</div>
-                  )}
-                  <div className='post-content'>{post.text}</div>
-                </div>
-              )
-            })}
-        </div>
+        <PostDisplay postData={postData}/>
       )}
     </div>
   );

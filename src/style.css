@@ -30,3 +30,7 @@ form {
   width: 50%;
   margin: auto;
 }
+
+.post {
+  padding-bottom: 10px;
+}

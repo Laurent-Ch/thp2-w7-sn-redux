@@ -57,9 +57,11 @@ import {Navigate} from "react-router-dom";
       },
       body: JSON.stringify(data)
     })
+    .then(getUserData())
     .catch((error) => console.log(error));
   }  
 
+  // Render
   if (!loggedStatus.logged) {
     return <Navigate to='/' />
   }

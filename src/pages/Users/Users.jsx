@@ -1,5 +1,5 @@
 import { React, useState} from 'react';
-import {Navigate} from "react-router-dom";
+import {Navigate, Link} from "react-router-dom";
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 
@@ -36,7 +36,7 @@ const Users = () => {
     return (
       <div className='container-each-user'>
         {loaded && usersData.map(({ id, username }) => (
-          <a className='each-user' key={id} href={'http://localhost:3000/users/' + id}>{username}</a>
+          <Link to={`/users/${id}`} className='each-user' key={id}>{username}</Link>
         ))}
       </div>
     );

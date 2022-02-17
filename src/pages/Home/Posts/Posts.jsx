@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import {  AUTH_TOKEN_NAME, USER_ID_NAME } from '../../config';
+import {  AUTH_TOKEN_NAME, USER_ID_NAME } from '../../../config';
 import { useSelector } from 'react-redux';
 
 const Posts = () => {

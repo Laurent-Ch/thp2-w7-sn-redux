@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store from "./stores/store";
 import Profile from "./components/Profile/Profile";
 import Users from "./components/Users/Users";
 
@@ -25,6 +25,7 @@ const App = () => {
           <Route path="/" element={<Home />}/>
           <Route path="/register" element={<RegisterForm />}/>
           <Route path="/login" element={<Login />}/>
+
         </Routes>
       </Router>
     </Provider>
@@ -32,9 +33,3 @@ const App = () => {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-// const loggedStatus = useSelector(state => state.logged);
-// useEffect(() => {
-//   console.log(loggedStatus)
-// }, [loggedStatus]
-// )

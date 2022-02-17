@@ -15,12 +15,12 @@ const loggedReducer = (state = initialState, action) => {
     case USER_LOGGED_IN:
       return {
         ...state,
-        logged: true,
+        logged: true
       };
     case USER_LOGGED_OUT:
       return {
         ...state,
-        logged: false,
+        logged: false
       }; 
     default:
       return state;

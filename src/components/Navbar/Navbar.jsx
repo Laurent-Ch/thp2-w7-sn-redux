@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLoggedOut } from '../../redux/logged/loggedActions';
+import { userLoggedOut } from '../../stores/logged/loggedActions';
 import { AUTH_TOKEN_NAME } from '../../config';
 
 const Navbar = () => {

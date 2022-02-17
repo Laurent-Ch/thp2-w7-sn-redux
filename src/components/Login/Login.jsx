@@ -1,7 +1,7 @@
 import { React, useState }  from 'react';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
-import { userLoggedIn } from '../../redux/logged/loggedActions';
+import { userLoggedIn } from '../../stores/logged/loggedActions';
 import { AUTH_TOKEN_NAME, USER_ID_NAME } from '../../config';
 
 const Login = () => {

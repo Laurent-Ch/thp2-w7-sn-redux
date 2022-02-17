@@ -16,7 +16,7 @@ const NewPostForm = () => {
 
   const data =  {
     text: postContent,
-    id: userID
+    user: userID
   }
 
   const createPost = () => {
@@ -28,6 +28,7 @@ const NewPostForm = () => {
       },
       body: JSON.stringify(data)
     })
+    .catch((error) => console.log(error));
   }
   
   return (

@@ -57,6 +57,7 @@ import {Navigate} from "react-router-dom";
       },
       body: JSON.stringify(data)
     })
+    .catch((error) => console.log(error));
   }  
 
   if (!loggedStatus.logged) {
